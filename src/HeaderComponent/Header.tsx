@@ -1,25 +1,28 @@
 import './Header.css';
 
 import React, { useState } from 'react';
-import { MailOutlined } from '@ant-design/icons';
+
+import { UserAddOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 
+import { Link } from 'react-router-dom';
+
 const items: MenuProps['items'] = [
   {
-    label: 'Employees',
+    label: <Link to={"/"}>Employees</Link>,
     key: 'list',
-    icon: <MailOutlined />,
+    icon: <UserOutlined />,
   },
   {
-    label: 'Add Employee',
+    label: <Link to={"/add-employee"}>Add Employee</Link>,
     key: 'add',
-    icon: <MailOutlined />,
+    icon: <UserAddOutlined />,
   }
 ];
 
-const App: React.FC = () => {
-  const [current, setCurrent] = useState('');
+const Header: React.FC = () => {
+  const [current, setCurrent] = useState('list');
 
   const onClick: MenuProps['onClick'] = (e) => {
     console.log('click ', e);
@@ -29,4 +32,4 @@ const App: React.FC = () => {
   return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
 };
 
-export default App;
+export default Header;
